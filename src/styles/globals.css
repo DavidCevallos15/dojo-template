@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@import "@fontsource-variable/dm-sans";
+
+@font-face {
+  font-family: "Kanji Display";
+  src: url("../assets/fonts/kanji-subset.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@theme {
+  /* ── Marca: cambia solo --color-brand para rebrandear el template ── */
+  --color-brand: #d6163c;
+  --color-brand-deep: #a90f2d;
+  --color-brand-soft: #fde8ec;
+
+  --color-ink: #0c0c0e;
+  --color-paper: #ffffff;
+  --color-mist: #f5f5f7;
+  --color-line: #e8e8ec;
+  --color-muted: #5d5d66;
+
+  /* Cinturones */
+  --color-belt-white: #f2f2f2;
+  --color-belt-yellow: #f5c518;
+  --color-belt-orange: #f08a24;
+  --color-belt-green: #2f9e5b;
+  --color-belt-blue: #2563eb;
+  --color-belt-brown: #7a4a2a;
+  --color-belt-black: #111111;
+
+  --font-sans: "DM Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-kanji: "Kanji Display", "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+
+  /* Motion tokens */
+  --ease-feedback: cubic-bezier(.3, .08, .18, 1);
+  --ease-interactive: cubic-bezier(.2, .8, .2, 1);
+  --ease-disclosure: cubic-bezier(.16, 1, .3, 1);
+  --ease-reveal: cubic-bezier(.32, .04, .18, 1);
+
+  --radius-card: 28px;
+  --radius-pill: 999px;
+  --spacing-section-x: clamp(1.25rem, 4vw, 3.75rem);
+  --spacing-section-y: clamp(4.5rem, 9vw, 8rem);
+
+  --animate-spin-slow: spin-slow 40s linear infinite;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes spin-slow { to { rotate: 360deg; } }
+  @keyframes float {
+    0%, 100% { translate: 0 0; }
+    50% { translate: 0 -10px; }
+  }
+}
+
+@utility motion-micro {
+  transition-duration: 160ms;
+  transition-timing-function: var(--ease-feedback);
+}
+@utility motion-interactive {
+  transition-duration: 240ms;
+  transition-timing-function: var(--ease-interactive);
+}
+@utility container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 76rem;
+  padding-inline: var(--spacing-section-x);
+}
+@utility section-y {
+  padding-block: var(--spacing-section-y);
+}
+@utility dot-grid {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand);
+  color: white;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
